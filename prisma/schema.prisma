@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Discovery {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now()) @map("created_at")
+  company      String   @db.VarChar(255)
+  responsible  String   @db.VarChar(255)
+  position     String   @db.VarChar(255)
+  email        String   @db.VarChar(255)
+  phoneNumber  String   @map("phone_number") @db.VarChar(50)
+  whatsapp     Boolean  @default(false)
+  challenges   String   @db.VarChar(500)
+  objectives   String   @db.VarChar(500)
+  comments     String?  @db.VarChar(500)
+  deadline     Decimal? @db.Decimal(10, 0)
+  value        Decimal? @db.Decimal(10, 0)
+  tools        String?  @db.VarChar(255)
+  target       String?  @db.VarChar(255)
+  products     String?  @db.VarChar(255)
+
+  @@map("discoveries")
+}
