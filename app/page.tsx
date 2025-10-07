@@ -18,7 +18,6 @@ import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import axios from "axios";
-// import Image from "next/image";
 
 export default function Home() {
   const [isLoader, setIsLoader] = useState<boolean>(false);
@@ -94,23 +93,22 @@ export default function Home() {
                         <Input
                           {...field}
                           type="text"
-                          value={field.value as any}
+                          value={field.value as string}
                           onChange={(e) => {
-                            let value = e.target.value.replace(/\D/g, "");
+                            const value = e.target.value.replace(/\D/g, "");
 
                             if (!value) {
                               field.onChange("");
                               return;
                             }
 
-                            let numberValue = parseInt(value, 10);
-                            let formatted = (numberValue / 100).toLocaleString(
-                              "pt-BR",
-                              {
-                                style: "currency",
-                                currency: "BRL",
-                              }
-                            );
+                            const numberValue = parseInt(value, 10);
+                            const formatted = (
+                              numberValue / 100
+                            ).toLocaleString("pt-BR", {
+                              style: "currency",
+                              currency: "BRL",
+                            });
 
                             field.onChange(formatted);
                           }}
@@ -119,7 +117,7 @@ export default function Home() {
                         <Input
                           {...field}
                           type="text"
-                          value={field.value as any}
+                          value={field.value as string}
                           onChange={(e) => {
                             let value = e.target.value.replace(/\D/g, "");
                             if (value.length > 11) value = value.slice(0, 11);
@@ -190,9 +188,9 @@ export default function Home() {
                         <Input
                           {...field}
                           type="text"
-                          value={field.value as any}
+                          value={field.value as string}
                           onChange={(e) => {
-                            let value = e.target.value.replace(/\D/g, "");
+                            const value = e.target.value.replace(/\D/g, "");
                             field.onChange(value);
                           }}
                         />
@@ -200,7 +198,7 @@ export default function Home() {
                         <Input
                           {...field}
                           type={input.type}
-                          value={field.value as any}
+                          value={field.value as string}
                         />
                       )}
                     </FormControl>
@@ -232,14 +230,6 @@ export default function Home() {
           </Button>
         </form>
       </Form>
-      {/* <footer className="w-full flex items-center px-14 bg-[#172144] h-20 mt-4">
-        <Image
-          src="/aude_logotipo.png"
-          width={100}
-          height={100}
-          alt="Picture of the author"
-        />
-      </footer> */}
     </div>
   );
 }
